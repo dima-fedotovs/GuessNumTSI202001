@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -33,12 +34,17 @@ public class Main {
 
     static int askGuess() {
         for (; ; ) {
-            System.out.println("Enter your guess");
-            int num = scan.nextInt();
-            if (num >= 1 && num <= 100) {
-                return num;
-            } else {
-                System.out.println("Please enter a number from 1 to 100");
+            try {
+                System.out.println("Enter your guess");
+                int num = scan.nextInt();
+                if (num >= 1 && num <= 100) {
+                    return num;
+                } else {
+                    System.out.println("Please enter a number from 1 to 100");
+                }
+            } catch (InputMismatchException ex) {
+                String str = scan.next();
+                System.out.println(str + " isn't a number");
             }
         }
     }
