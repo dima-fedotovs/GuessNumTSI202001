@@ -1,14 +1,13 @@
 package com.company;
 
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
         Random rand = new Random();
+        ArrayList<GameResult> leaders = new ArrayList<>();
 
         do {
             System.out.println("What is your name?");
@@ -22,6 +21,10 @@ public class Main {
                 int userNum = askGuess();
 
                 if (userNum == myNum) {
+                    GameResult r = new GameResult();
+                    r.name = name;
+                    r.triesCount = i + 1;
+                    leaders.add(r);
                     System.out.println("You win!");
                     break;
                 }
@@ -36,6 +39,11 @@ public class Main {
                 }
             }
         } while (askAnotherGame());
+
+        for (GameResult r : leaders) {
+            System.out.println(r.name + " " + r.triesCount);
+        }
+
         System.out.println("Good bye!");
     }
 
