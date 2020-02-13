@@ -10,26 +10,36 @@ public class Main {
     public static void main(String[] args) {
         Random rand = new Random();
 
-        System.out.println("What is your name?");
-        String name = scan.next();
-        System.out.println("Hello, " + name);
+        String answer;
+        do {
+            System.out.println("What is your name?");
+            String name = scan.next();
+            System.out.println("Hello, " + name);
 
-        int myNum = rand.nextInt(100) + 1;
-        System.out.println("Cheat: " + myNum);
+            int myNum = rand.nextInt(100) + 1;
+            System.out.println("Cheat: " + myNum);
 
-        for (int i = 0; i < 10; i++) {
-            int userNum = askGuess();
+            for (int i = 0; i < 10; i++) {
+                int userNum = askGuess();
 
-            if (myNum < userNum) {
-                System.out.println("My number is less then yours");
-            } else if (myNum > userNum) {
-                System.out.println("My number is greater then yours");
-            } else {
-                System.out.println("You win!");
-                break;
+                if (userNum == myNum) {
+                    System.out.println("You win!");
+                    break;
+                }
+                if (i == 9) {
+                    System.out.println("You lost! My number was " + myNum);
+                    break;
+                }
+                if (myNum < userNum) {
+                    System.out.println("My number is less then yours");
+                } else {
+                    System.out.println("My number is greater then yours");
+                }
             }
-        }
-
+            System.out.println("Do you want to play again? y/n");
+            answer = scan.next();
+        } while (answer.equalsIgnoreCase("y"));
+        System.out.println("Good bye!");
     }
 
     static int askGuess() {
