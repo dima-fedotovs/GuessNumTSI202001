@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
         Random rand = new Random();
 
-        String answer;
         do {
             System.out.println("What is your name?");
             String name = scan.next();
@@ -36,18 +35,18 @@ public class Main {
                     System.out.println("My number is greater then yours");
                 }
             }
-            answer = askAnotherGame();
-        } while (answer.equalsIgnoreCase("y"));
+        } while (askAnotherGame());
         System.out.println("Good bye!");
     }
 
-    static String askAnotherGame() {
-        for (;;) {
+    static boolean askAnotherGame() {
+        for (; ; ) {
             System.out.println("Do you want to play again? y/n");
             String answer = scan.next();
-            if (answer.equalsIgnoreCase("y")
-                    || answer.equalsIgnoreCase("n")) {
-                return answer;
+            if (answer.equalsIgnoreCase("y")) {
+                return true;
+            } else if (answer.equalsIgnoreCase("n")) {
+                return false;
             } else {
                 System.out.println("You have to enter 'y' or 'n'");
             }
