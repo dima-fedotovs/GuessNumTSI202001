@@ -36,10 +36,22 @@ public class Main {
                     System.out.println("My number is greater then yours");
                 }
             }
-            System.out.println("Do you want to play again? y/n");
-            answer = scan.next();
+            answer = askAnotherGame();
         } while (answer.equalsIgnoreCase("y"));
         System.out.println("Good bye!");
+    }
+
+    static String askAnotherGame() {
+        for (;;) {
+            System.out.println("Do you want to play again? y/n");
+            String answer = scan.next();
+            if (answer.equalsIgnoreCase("y")
+                    || answer.equalsIgnoreCase("n")) {
+                return answer;
+            } else {
+                System.out.println("You have to enter 'y' or 'n'");
+            }
+        }
     }
 
     static int askGuess() {
