@@ -17,13 +17,17 @@ public class Main {
             int myNum = rand.nextInt(100) + 1;
             System.out.println("Cheat: " + myNum);
 
+            long t1 = System.currentTimeMillis();
+
             for (int i = 0; i < 10; i++) {
                 int userNum = askGuess();
 
                 if (userNum == myNum) {
+                    long t2 = System.currentTimeMillis();
                     GameResult r = new GameResult();
                     r.name = name;
                     r.triesCount = i + 1;
+                    r.time = t2 - t1;
                     leaders.add(r);
                     System.out.println("You win!");
                     break;
@@ -40,11 +44,21 @@ public class Main {
             }
         } while (askAnotherGame());
 
-        for (GameResult r : leaders) {
-            System.out.println(r.name + " " + r.triesCount);
-        }
+        printResults(leaders);
 
         System.out.println("Good bye!");
+    }
+
+    private static void printResults(ArrayList<GameResult> leaders) {
+        int maxLen = 0;
+        for (GameResult r : leaders) {
+            if (r.name.length() > maxLen) {
+                maxLen = r.name.length();
+            }
+        }
+        for (GameResult r : leaders) {
+            System.out.printf("%-" + maxLen + "s %2d %3.2f%n", r.name, r.triesCount, r.time / 1000.0);
+        }
     }
 
     static boolean askAnotherGame() {
