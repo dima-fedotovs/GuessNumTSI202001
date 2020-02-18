@@ -12,12 +12,12 @@ public class LeaderBoard {
     public void printResults() {
         int maxLen = 0;
         for (GameResult r : leaders) {
-            if (r.name.length() > maxLen) {
-                maxLen = r.name.length();
+            if (r.getName().length() > maxLen) {
+                maxLen = r.getName().length();
             }
         }
         for (GameResult r : leaders) {
-            System.out.printf("%-" + maxLen + "s %2d %3.2f%n", r.name, r.triesCount, r.time / 1000.0);
+            System.out.printf("%-" + maxLen + "s %2d %3.2f%n", r.getName(), r.getTriesCount(), r.getTime() / 1000.0);
         }
     }
 

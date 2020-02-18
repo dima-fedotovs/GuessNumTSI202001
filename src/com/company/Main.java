@@ -23,9 +23,9 @@ public class Main {
                 if (userNum == myNum) {
                     long t2 = System.currentTimeMillis();
                     GameResult r = new GameResult();
-                    r.name = name;
-                    r.triesCount = i + 1;
-                    r.time = t2 - t1;
+                    r.setName(name);
+                    r.setTriesCount(i + 1);
+                    r.setTime(t2 - t1);
                     leaderBoard.addLeader(r);
                     System.out.println("You win!");
                     break;
