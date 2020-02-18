@@ -11,11 +11,14 @@ public class LeaderBoard {
     }
 
     public void printResults() {
+        // находит максимальную длину имени (не работает для варианта 3 печати)
+        // так как maxLen должна быть final
 //        int maxLen = 0;
 //        for (GameResult r : leaders) {
 //            maxLen = Math.max(maxLen, r.getName().length());
 //        }
 
+        // тоже самое, но только maxLen "эффективно final" так как инициализируется один раз и не меняется
         int maxLen = leaders.stream()
                 .mapToInt(r -> r.getName().length())
                 .max()
