@@ -6,6 +6,7 @@ public class Main {
     static LeaderBoard leaderBoard = new LeaderBoard();
 
     public static void main(String[] args) {
+        leaderBoard.load();
         Random rand = new Random();
 
         do {
@@ -43,6 +44,7 @@ public class Main {
         } while (Asker.askAnotherGame());
 
         leaderBoard.printResults();
+        leaderBoard.save();
 
         System.out.println("Good bye!");
     }
