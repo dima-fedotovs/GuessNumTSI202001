@@ -1,7 +1,6 @@
 package com.company;
 
 import java.io.File;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class LeaderBoard {
+    public static final File FILE = new File("leaders.txt");
     private ArrayList<GameResult> leaders = new ArrayList<>();
 
     public void addLeader(GameResult gr) {
@@ -53,20 +53,21 @@ public class LeaderBoard {
         // вариант 3: сортирует и печатает первые 5 результатов
         leaders.stream()
                 .sorted(Comparator.comparing(GameResult::getTriesCount)
-                                  .thenComparing(GameResult::getTime))
+                        .thenComparing(GameResult::getTime))
                 .limit(5)
                 .forEach(r -> System.out.printf("%-" + maxLen + "s %2d %3.2f%n", r.getName(), r.getTriesCount(), r.getTime() / 1000.0));
     }
 
     public void load() {
-        File file = new File("leaders.txt");
-        try (Scanner in = new Scanner(file)) {
+        try (Scanner in = new Scanner(FILE)) {
             while (in.hasNext()) {
+                long startTime = in.nextLong();
                 String name = in.next();
                 int triesCount = in.nextInt();
                 long time = in.nextLong();
 
                 GameResult r = new GameResult();
+                r.setStartTime(startTime);
                 r.setName(name);
                 r.setTriesCount(triesCount);
                 r.setTime(time);
@@ -79,10 +80,9 @@ public class LeaderBoard {
     }
 
     public void save() {
-        File file = new File("leaders.txt");
-        try (PrintWriter out = new PrintWriter(file)) {
+        try (PrintWriter out = new PrintWriter(FILE)) {
             for (GameResult r : leaders) {
-                out.printf("%s %d %d%n", r.getName(), r.getTriesCount(), r.getTime());
+                out.printf("%d %s %d %d%n", r.getStartTime(), r.getName(), r.getTriesCount(), r.getTime());
             }
         } catch (IOException e) {
             System.out.println("Cannot save leaderboard. Your results may be lost.");

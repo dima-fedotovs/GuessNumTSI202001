@@ -24,6 +24,7 @@ public class Main {
                 if (userNum == myNum) {
                     long t2 = System.currentTimeMillis();
                     GameResult r = new GameResult();
+                    r.setStartTime(t1);
                     r.setName(name);
                     r.setTriesCount(i + 1);
                     r.setTime(t2 - t1);

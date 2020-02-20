@@ -1,9 +1,18 @@
 package com.company;
 
 public class GameResult {
+    private long startTime;
     private String name;
     private int triesCount;
     private long time;
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
 
     public String getName() {
         return name;
