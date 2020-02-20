@@ -71,7 +71,6 @@ public class LeaderBoard {
                 r.setTriesCount(triesCount);
                 r.setTime(time);
 
-//                leaders.add(r);
                 addLeader(r);
             }
         } catch (IOException e) {
