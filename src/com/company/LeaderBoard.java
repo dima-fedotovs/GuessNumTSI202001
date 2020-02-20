@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class LeaderBoard {
-    public static final File FILE = new File("leaders.txt");
+    private static final File FILE = new File("leaders.txt");
     private ArrayList<GameResult> leaders = new ArrayList<>();
 
     public void addLeader(GameResult gr) {
